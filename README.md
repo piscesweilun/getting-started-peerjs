@@ -1,6 +1,5 @@
 # getting-started-peerjs
 
-<h3>Run server</h3>
 <h4>1. Install the package globally:</h4>
 <p><code>$ npm install peer -g</code></p>
 <h4>2. Run the server:</h4>
