@@ -12,11 +12,11 @@
 
     <script>
       var peer = new Peer('24717268-receiver', {
-        // host: 'localhost',
-        host: '130.211.246.15',
+        host: 'localhost',
+        //host: '130.211.246.15',
         port: 9000,
         path: '/myapp',
-        proxied: false
+        proxied: true
       });
       peer.on('open', function(id) {
         console.log('My peer ID is: ' + id);
