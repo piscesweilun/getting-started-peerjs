@@ -4,7 +4,7 @@
 <p><code>$ npm install peer -g</code></p>
 <h4>2. Run the server:</h4>
 <p><code>
-  $ peerjs --port 9000 --path /myapp<br>
+  $ peerjs --port 9000 --path /myapp <br>
   &#09;Started PeerServer on ::, port: 9000, path: /myapp (v. 0.3.2)
 </code></p>
 <h4>3. Run receiver.html on browser</h4>
