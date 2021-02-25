@@ -12,7 +12,7 @@
 <h3>使用 http server</h3>
   <p><code>$ node http-server.js</code></p>
   <p><code>&emsp;&emsp;Listening on: 8000</code></p>
-<h4>載入receiver</h4>
+<h4>1. 載入receiver</h4>
 <p><code>localhost:8000</code><p>
-<h4>載入sender</h4>
+<h4>2. 載入sender</h4>
 <p><code>localhost:8000/sender</code></p>
