@@ -17,11 +17,11 @@
 
         // 伺服器放在 local
         //host: 'localhost',
-        //proxied: true
+        //proxied: true,
 
         // 伺服器放在 Google cloud
         host: '130.211.246.15',
-        
+
         port: 9000,
         path: '/myapp',
       });
@@ -51,7 +51,7 @@
 
       function onSendMessage() {
         console.log("Message sent...");
-        conn.send("Message from sender");
+        conn.send("Buttn clicked from sender");
       }
     </script>
 </body>

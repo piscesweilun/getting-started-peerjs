@@ -8,11 +8,11 @@ const port = process.env.PORT || "8000";
 app.use(express.static(path.join(__dirname)));
 
 app.get("/", (request, response) => {
-    response.sendFile(__dirname + "/sender.html");
+    response.sendFile(__dirname + "/receiver.html");
 });
 
-app.get("/receiver", (request, response) => {
-    response.sendFile(__dirname + "/receiver.html");
+app.get("/sender", (request, response) => {
+    response.sendFile(__dirname + "/sender.html");
 });
 server.listen(port);
 console.log('Listening on: ' + port);
