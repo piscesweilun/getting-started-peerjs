@@ -12,11 +12,15 @@
 
     <script>
       var peer = new Peer('24717268-receiver', {
-        // host: 'localhost',
+        // 伺服器放在 local
+        //host: 'localhost',
+        //proxied: true
+
+        // 伺服器放在 Google cloud
         host: '130.211.246.15',
+        
         port: 9000,
         path: '/myapp',
-        proxied: false
       });
       peer.on('open', function(id) {
         console.log('My peer ID is: ' + id);
