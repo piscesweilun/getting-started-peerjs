@@ -12,10 +12,10 @@
 <h4>檢查是否收到對方的訊息。</h4>
 <hr>
 <h3>使用 http server</h3>
-<p><code>
-  $ node http-server.js<br>
-  &#09;Listening on: 8000
-</code></p>
+<code>
+  <p>$ node http-server.js</p>
+  <p>&emsp;Listening on: 8000</p>
+</code>
 <h4>載入receiver</h4>
 <p><code>localhost:8000</code><p>
 <h4>載入sender</h4>
