@@ -56,7 +56,7 @@
         var msg = "Button clicked at " + d.toLocaleTimeString();
         console.log(msg);
         document.getElementById('information').innerHTML = msg;
-        conn.send("From sender: " + msg);
+        conn.send(msg);
       }
     </script>
 </body>
