@@ -12,6 +12,8 @@
 
     <button type="button" onclick="onSendMessage()">Send</button>
 
+    <h3 id="information"></h3>
+
     <script>
       var peer = new Peer('24717268-sender', {
 
@@ -50,8 +52,11 @@
       });
 
       function onSendMessage() {
-        console.log("Message sent...");
-        conn.send("Buttn clicked from sender");
+        var d = new Date();
+        var msg = "Button clicked at " + d.toLocaleTimeString();
+        console.log(msg);
+        document.getElementById('information').innerHTML = msg;
+        conn.send("From sender: " + msg);
       }
     </script>
 </body>
