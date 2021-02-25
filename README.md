@@ -5,7 +5,7 @@
 <h4>2. Run the server:</h4>
 <p><code>
   $ peerjs --port 9000 --path /myapp<br>
-  <pre>Started PeerServer on ::, port: 9000, path: /myapp (v. 0.3.2)</pre>
+  &#09;Started PeerServer on ::, port: 9000, path: /myapp (v. 0.3.2)
 </code></p>
 <h4>3. Run receiver.html on browser</h4>
 <h4>4. Run sender.html on browser</h4>
@@ -14,7 +14,7 @@
 <h3>使用 http server</h3>
 <p><code>
   $ node http-server.js<br>
-<pre>Listening on: 8000</pre>
+  &#09;Listening on: 8000
 </code></p>
 <h4>載入receiver</h4>
 <p><code>localhost:8000</code><p>
