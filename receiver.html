@@ -10,18 +10,35 @@
     <h2 id="peer-id">Peer ID</h2>
     <h3 id="message">No message yet.</h3>
 
+    <video id="local" autoplay></video>
+    <video id='remote' autoplay></video>
+
     <script>
       var peer = new Peer('24717268-receiver', {
         // 伺服器放在 local
-        //host: 'localhost',
-        //proxied: true,
+        host: 'localhost',
+        proxied: true,
 
         // 伺服器放在 Google cloud
-        host: '130.211.246.15',
+        // host: '130.211.246.15',
 
         port: 9000,
         path: '/myapp',
       });
+
+      peer.on('call', call => {
+        const startChat = async () => {
+          const localStream = await navigator.mediaDevices.getUserMedia( { video: true});
+          document.querySelector('video#local').srcObject = localStream
+          call.answer(localStream)
+
+          call.on('stream', remoteStream => {
+            document.querySelector('video#remote').srcObject = remoteStream;
+          });
+        }
+        startChat()
+      });
+
       peer.on('open', function(id) {
         console.log('My peer ID is: ' + id);
         document.getElementById('peer-id').innerHTML = "Peer ID = " + id;

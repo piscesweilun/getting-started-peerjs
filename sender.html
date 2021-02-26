@@ -18,11 +18,11 @@
       var peer = new Peer('24717268-sender', {
 
         // 伺服器放在 local
-        //host: 'localhost',
-        //proxied: true,
+        host: 'localhost',
+        proxied: true,
 
         // 伺服器放在 Google cloud
-        host: '130.211.246.15',
+        // host: '130.211.246.15',
 
         port: 9000,
         path: '/myapp',
@@ -40,24 +40,35 @@
         console.log("disconnected");
       });
 
-      var conn = peer.connect('24717268-receiver');
-      conn.on('open', function() {
-        // Receive messages
-        conn.on('data', function(data) {
-          console.log('Received', data);
-          document.getElementById('message').innerHTML = "Received: " + data;
-        });
-        // Send messages
-        conn.send("Hello! I'm sender");
-      });
+      // var conn = peer.connect('24717268-receiver');
+      // conn.on('open', function() {
+      //   // Receive messages
+      //   conn.on('data', function(data) {
+      //     console.log('Received', data);
+      //     document.getElementById('message').innerHTML = "Received: " + data;
+      //   });
+      //   // Send messages
+      //   conn.send("Hello! I'm sender");
+      // });
+      //
+      // function onSendMessage() {
+      //   var d = new Date();
+      //   var msg = "Button clicked at " + d.toLocaleTimeString();
+      //   console.log(msg);
+      //   document.getElementById('information').innerHTML = msg;
+      //   conn.send(msg);
+      // }
 
-      function onSendMessage() {
-        var d = new Date();
-        var msg = "Button clicked at " + d.toLocaleTimeString();
-        console.log(msg);
-        document.getElementById('information').innerHTML = msg;
-        conn.send(msg);
+      const startChat = async () => {
+        const localStream = await navigator.mediaDevices.getUserMedia({ video: true });
+        document.querySelector('video#local').srcObject = localStream;
+        const call = peer.call('24717268-receiver', localStream);
+
+        call.on('stream', remoteStream => {
+          document.querySelector('video#remote').srcObject = remoteStream;
+        }
       }
+      startChat();
     </script>
 </body>
 </html>

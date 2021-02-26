@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>影像測試</title>
+</head>
+<body>
+    <h1>Webcam影像測試</h1>
+    <video autoplay>找不到可用的影像裝置</video>
+
+    <script>
+      const constraints = { video: true };
+
+      navigator.mediaDevices.getUserMedia(constraints)
+      .then(function(stream) {
+        const video = document.querySelector("video");
+        video.srcObject = stream;
+      })
+      .catch(function(err) {
+        alert("getUserMedia() is not supported by your browser");
+    });
+    // function hasGetUserMedia() {
+    //   return !!(navigator.mediaDevices && navigator.mediaDevices.getUserMedia);
+    // }
+    //
+    // if(hasGetUserMedia()) {
+    //   const video = document.querySelector("video");
+    //   navigator.mediaDevices.getUserMedia(constraints).then((stream) => {
+    //     video.srcObject = stream;
+    //   })
+    // } else {
+    //   alert("getUserMedia() is not supported by your browser");
+    // }
+
+    </script>
+</body>
+</html>
