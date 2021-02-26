@@ -10,8 +10,8 @@
     <h2 id="peer-id">Peer ID</h2>
     <h3 id="message">No message yet.</h3>
 
-    <video id="local" autoplay></video>
-    <video id='remote' autoplay></video>
+    <video id="local" autoplay width=320 height=240>Local video not found!</video>
+    <video id="remote" autoplay width=320 height=240>Remote video not found!</video>
 
     <script>
       var peer = new Peer('24717268-receiver', {
@@ -28,7 +28,8 @@
 
       peer.on('call', call => {
         const startChat = async () => {
-          const localStream = await navigator.mediaDevices.getUserMedia( { video: true});
+          const localStream = await navigator.mediaDevices.getUserMedia( {
+            video: {width: 320, height: 240} });
           document.querySelector('video#local').srcObject = localStream
           call.answer(localStream)
 

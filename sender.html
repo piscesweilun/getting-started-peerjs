@@ -9,11 +9,14 @@
     <h1>Sender</h1>
     <h2 id="peer-id">Peer ID</h2>
     <h3 id="message">No message yet.</h3>
-
+    
     <button type="button" onclick="onSendMessage()">Send</button>
 
     <h3 id="information"></h3>
 
+    <video id="local" autoplay width=320 height=240>Local video not found!</video>
+    <video id="remote" autoplay width=320 height=240>Remote video not found!</video>
+ 
     <script>
       var peer = new Peer('24717268-sender', {
 
@@ -40,33 +43,34 @@
         console.log("disconnected");
       });
 
-      // var conn = peer.connect('24717268-receiver');
-      // conn.on('open', function() {
-      //   // Receive messages
-      //   conn.on('data', function(data) {
-      //     console.log('Received', data);
-      //     document.getElementById('message').innerHTML = "Received: " + data;
-      //   });
-      //   // Send messages
-      //   conn.send("Hello! I'm sender");
-      // });
-      //
-      // function onSendMessage() {
-      //   var d = new Date();
-      //   var msg = "Button clicked at " + d.toLocaleTimeString();
-      //   console.log(msg);
-      //   document.getElementById('information').innerHTML = msg;
-      //   conn.send(msg);
-      // }
+      var conn = peer.connect('24717268-receiver');
+      conn.on('open', function() {
+        // Receive messages
+        conn.on('data', function(data) {
+          console.log('Received', data);
+          document.getElementById('message').innerHTML = "Received: " + data;
+        });
+        // Send messages
+        conn.send("Hello! I'm sender");
+      });
+      
+      function onSendMessage() {
+        var d = new Date();
+        var msg = "Button clicked at " + d.toLocaleTimeString();
+        console.log(msg);
+        document.getElementById('information').innerHTML = msg;
+        conn.send(msg);
+      }
 
       const startChat = async () => {
-        const localStream = await navigator.mediaDevices.getUserMedia({ video: true });
+        const localStream = await navigator.mediaDevices.getUserMedia({ 
+          video: {width: 320, height: 240} });
         document.querySelector('video#local').srcObject = localStream;
         const call = peer.call('24717268-receiver', localStream);
 
         call.on('stream', remoteStream => {
           document.querySelector('video#remote').srcObject = remoteStream;
-        }
+        })
       }
       startChat();
     </script>
