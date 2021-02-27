@@ -9,27 +9,28 @@
     <h1>Sender</h1>
     <h2 id="peer-id">Peer ID</h2>
     <h3 id="message">No message yet.</h3>
-    
+
     <button type="button" onclick="onSendMessage()">Send</button>
 
     <h3 id="information"></h3>
 
     <video id="local" autoplay width=320 height=240>Local video not found!</video>
     <video id="remote" autoplay width=320 height=240>Remote video not found!</video>
- 
+
     <script>
-      var peer = new Peer('24717268-sender', {
-
-        // 伺服器放在 local
-        host: 'localhost',
-        proxied: true,
-
-        // 伺服器放在 Google cloud
-        // host: '130.211.246.15',
-
-        port: 9000,
-        path: '/myapp',
-      });
+      var peer = new Peer('24717268-sender');
+      // var peer = new Peer('24717268-sender', {
+      //
+      //   // 伺服器放在 local
+      //   host: 'localhost',
+      //   proxied: true,
+      //
+      //   // 伺服器放在 Google cloud
+      //   // host: '130.211.246.15',
+      //
+      //   port: 9000,
+      //   path: '/myapp',
+      // });
       peer.on('open', function(id) {
         console.log('My peer ID is: ' + id);
         document.getElementById('peer-id').innerHTML = "Peer ID = " + id;
@@ -53,7 +54,7 @@
         // Send messages
         conn.send("Hello! I'm sender");
       });
-      
+
       function onSendMessage() {
         var d = new Date();
         var msg = "Button clicked at " + d.toLocaleTimeString();
@@ -63,7 +64,7 @@
       }
 
       const startChat = async () => {
-        const localStream = await navigator.mediaDevices.getUserMedia({ 
+        const localStream = await navigator.mediaDevices.getUserMedia({
           video: {width: 320, height: 240} });
         document.querySelector('video#local').srcObject = localStream;
         const call = peer.call('24717268-receiver', localStream);
